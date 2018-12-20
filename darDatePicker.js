@@ -6,6 +6,7 @@
           position: "right",
           max: '',
           min: '',
+          length: 0,
           separator: "-",
           // 每日提示字 price(className red), lunar 阴历包含节假日提示
           dayTips: false,
@@ -29,9 +30,21 @@
       this.settings = this.options
       this.getData();
     };
+    Plugin.prototype.GetDateStr=function() {
+      Date.prototype.clone=function(){
+        return new Date(this.valueOf());
+      }
+      var dd=this.checkType(this.settings.min,'date').clone();
+      dd.setDate(dd.getDate()+this.options.length);//获取AddDayCount天后的日期
+      var y = dd.getFullYear(); 
+      var m = dd.getMonth()+1;//获取当前月份的日期
+      var d = dd.getDate(); 
+      return y+"-"+m+"-"+d; 
+    }
     Plugin.prototype.getData = function() {
       this.settings.min ? this.min = this.checkType(this.settings.min,'date') : '';
-      this.settings.max ? this.max = this.checkType(this.settings.max,'date') : '';
+      this.settings.max ? this.max = this.checkType(this.settings.max,'date') : this.max = this.checkType(this.GetDateStr(),'date');
+      console.log(this.min)
       var json = [];
       for (var s = this.min.getFullYear(), l = this.max.getFullYear(); s <= l; s++) {
         var obj = {};
@@ -59,7 +72,7 @@
             for (var d = dStart; d <= days; d++) {
               var j = {};
               j['id'] = j['name'] = ("0" + d).slice(-2);
-              if(d+1< this.min.getDate()){
+              if(d< this.min.getDate()){
                 j['disabled'] = true;
               }
               if (!(m == this.max.getMonth() + 1 && s == this.max.getFullYear() && d > this.max.getDate())) {
