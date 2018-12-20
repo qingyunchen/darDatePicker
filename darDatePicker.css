@@ -1,0 +1,93 @@
+div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing: border-box;}
+      ul,dl{list-style: none;}
+      #datePicker{
+        border: 1px solid #e5e5e5;
+        padding: 5px 10px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 18px;
+        color: #000;
+        text-align: center;
+        font-family: 'Tahoma',"Lucida Grande",'Verdana',"Microsoft YaHei",'hei';
+        
+      }
+      .dar-orange{
+        color: #fa967f;
+      }
+      #datePickerPage dt{
+        font-size: 20px;
+      }
+      #datePickerPage{
+        font-size: 14px;
+        color: #555;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-top:47px ;
+      }
+      #datePickerPage .dar-fixed{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0px 2px 3px rgba(0,0,0,.1);
+      }
+      .dar-fixed ul,.dar-year dl{
+        display: flex;
+      }
+      .dar-fixed li{
+        flex: 1;
+        padding:14px 0;
+      }
+      #datePickerPage .dar-scrollBox{
+        flex: 1;
+        
+        overflow: auto;
+      }
+      .dar-scrollBox .dar-year h2,.dar-year h3{
+        text-align: left;
+      }
+      .dar-year dl{
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .dar-year dd{
+        width: 14.2%;
+        height: 58px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .dar-scrollBox dl .dar-disable{
+        color: rgb(204, 204, 204);
+      }
+      .dar-today{
+        position: relative;
+        font-weight: 900;
+        color: #4D9FFF;
+      }
+      .dar-today:before{
+        content: '';
+        width: 0;
+        height: 0;
+        border-radius: 100%;
+        border: 24px solid #EAEAEA;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -24px 0 0 -24px;
+        /*box-shadow: 0px 0px 20px rgba(0,0,0,0.1);*/
+        box-sizing: border-box;
+        z-index: -1;
+      }
+      .dar-scrollBox table td p{
+        font-size: 10px;
+        font-weight: 400;
+      }
