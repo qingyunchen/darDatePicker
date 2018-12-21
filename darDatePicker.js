@@ -120,14 +120,18 @@
       $("body").prepend(html)
       var ele = $(this.element)
       var separator = this.options.separator
-      ele.on('focus',function(){
+      ele.on('click',function(){
         $('#datePickerPage').show()
         ele.blur()
       })
+      var callback = this.options.callback
       $("#datePickerPage dd").on("click",function(){
+        $(this).addClass("dar-active").siblings().removeClass('dar-active')
         $("#datePickerPage").hide()
         var choice = $(this).closest('.dar-year').attr('yearId')+ separator + $(this).closest('.dar-month').attr('monthId') + separator + $(this).attr("dayId")
         ele.val(choice)
+        ele.html(choice)
+        callback&&callback(choice)
       })
       $("#datePickerPage .dar-disable").off()
       var now = new Date().getFullYear()

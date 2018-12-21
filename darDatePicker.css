@@ -68,12 +68,15 @@ div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing:
       .dar-scrollBox dl .dar-disable{
         color: rgb(204, 204, 204);
       }
-      .dar-today{
+      .dar-today,.dar-active{
         position: relative;
         font-weight: 900;
         color: #4D9FFF;
       }
-      .dar-today:before{
+      .dar-active{
+        color: red;
+      }
+      .dar-today:before,.dar-active:before{
         content: '';
         width: 0;
         height: 0;
