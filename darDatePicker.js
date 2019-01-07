@@ -42,13 +42,10 @@
       return y+"-"+m+"-"+d; 
     }
     Plugin.prototype.getData = function() {
-      
       this.settings.min ? this.min = this.checkType(this.settings.min,'date') : '';
       this.settings.max ? this.max = this.checkType(this.settings.max,'date') : this.max = this.checkType(this.GetDateStr(),'date');
-      console.log(this.max)
       var json = [];
       for (var s = this.min.getFullYear(), l = this.max.getFullYear(); s <= l; s++) {
-        
         var obj = {};
         obj['id'] = obj['name'] = s;
         obj.child = [];
@@ -58,7 +55,6 @@
         }else{
           mStart  = 1;
         }
-        
         for (var m = mStart; m <= 12; m++) {
           var o = {};
           o['id'] = o['name'] = ("0" + m).slice(-2);
@@ -107,7 +103,6 @@
         items = [];
       };
       var html = '<div id="datePickerPage" style="display: none;"><div class="dar-fixed"><ul><li class="dar-orange">日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li  class="dar-orange">六</li></ul></div><div class="dar-scrollBox">'
-      
       for(var i=0;i<items.length;i++){
         html += '<div class="dar-year" yearId='+items[i].id+'><h2>'+items[i].name+'年</h2>'
         for(var j=0;j<items[i].child.length;j++){
@@ -130,9 +125,11 @@
       })
       var callback = this.options.callback
       $("#datePickerPage dd").on("click",function(){
-        $(this).addClass("dar-active").siblings().removeClass('dar-active')
+        $("#datePickerPage dd").removeClass('dar-active')
+        $(this).addClass("dar-active")
         $("#datePickerPage").hide()
         var choice = $(this).closest('.dar-year').attr('yearId')+ separator + $(this).closest('.dar-month').attr('monthId') + separator + $(this).attr("dayId")
+               
         ele.val(choice)
         ele.html(choice)
         callback&&callback(choice)

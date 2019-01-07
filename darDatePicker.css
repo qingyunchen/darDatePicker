@@ -28,7 +28,9 @@ div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing:
         left: 0;
         width: 100%;
         height: 100%;
-        padding-top:47px ;
+        padding-top:52px ;
+        z-index: 4000;
+        background-color: #fff;
       }
       #datePickerPage .dar-fixed{
         position: fixed;
@@ -43,15 +45,16 @@ div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing:
       }
       .dar-fixed li{
         flex: 1;
-        padding:14px 0;
+        height: 47px;
+        line-height: 47px;
       }
       #datePickerPage .dar-scrollBox{
         flex: 1;
-        
         overflow: auto;
       }
       .dar-scrollBox .dar-year h2,.dar-year h3{
         text-align: left;
+        font-size: 16px;
       }
       .dar-year dl{
         width: 100%;
@@ -59,7 +62,7 @@ div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing:
       }
       .dar-year dd{
         width: 14.2%;
-        height: 58px;
+        height: 48px;
         display: flex;
         flex-direction: column;
         align-items: center;
