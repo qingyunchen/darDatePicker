@@ -1,14 +1,6 @@
 div,ul,li,p,h1,h2,h3,h4,table,tr,th,td,dl,dt,dd{padding: 0;margin: 0;box-sizing: border-box;}
       ul,dl{list-style: none;}
       #datePicker{
-        border: 1px solid #e5e5e5;
-        padding: 5px 10px;
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 18px;
-        color: #000;
-        text-align: center;
-        font-family: 'Tahoma',"Lucida Grande",'Verdana',"Microsoft YaHei",'hei';
         
       }
       .dar-orange{

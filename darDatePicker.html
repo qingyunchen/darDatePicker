@@ -12,21 +12,82 @@
 			  line-height: 35px;
 			  padding:0;
 			}
+			.dar-btn-disable{
+			  background-color: #000000;
+			}
 		</style>
 	</head>
 	<body>
 	  <!--<input type="text" id="datePicker" />-->
 	  <span id="datePicker">201651421</span>
+	  <button id="leftDay" class="dar-btn-disable">昨天</button>
+	  <button id="rightDay">明天</button>
 	  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 	  <script type="text/javascript" src="./darDatePicker.js"></script>
 	  <script>
 	   $("#datePicker").darDatePicker({
 	     min: new Date(),
-	     length: 100,
+	     //length: 34,
+	     max: "2019-03-05",
 	     callback: function(data){
-	       alert('回调函数：'+data)
+	       //alert('回调函数：'+data)
 	     }
 	   })
+	   $("#leftDay").click(function(){
+	     
+       
+	   })
+	    function findnextDay(dom){
+	      var now = ""
+        if(dom.next("dd").length>0){
+          dom.next("dd").trigger("click")
+        }else {
+          if(dom.closest(".dar-month").next(".dar-month").length>0){
+            dom.closest(".dar-month").next(".dar-month").find("dd[dayid='01']").trigger("click")
+          }else{
+            dom.closest(".dar-year").next(".dar-year").find(".dar-month:eq(0)").find("dd[dayid='01']").trigger("click")
+          }
+        }
+	    }
+	     function findPrevDay(dom){
+        if(dom.prev("dd[dayId]")&&dom.prev("dd[dayId]").attr("dayId")>0&&dom.prev("dd[dayId]").attr("dayId")<32){
+          dom.prev("dd").trigger("click")
+        }else {
+          if(dom.closest(".dar-month").prev(".dar-month").length>0){
+            dom.closest(".dar-month").prev(".dar-month").find("dd:last-child").trigger("click")
+          }else{
+            dom.closest(".dar-year").prev(".dar-year").find(".dar-month:last-child").find("dd:last-child").trigger("click")
+          }
+        }
+      }
+	     function changeClass(){
+	       if(new Date($("#datePicker").html())>=new Date("2019-03-05")){
+           $("#rightDay").addClass("dar-btn-disable")
+           $("#leftDay").removeClass("dar-btn-disable")
+         }else if(new Date($("#datePicker").html())<=new Date()){
+           $("#leftDay").addClass("dar-btn-disable")
+           $("#rightDay").removeClass("dar-btn-disable")
+         }else{
+           $("#rightDay").removeClass("dar-btn-disable")
+           $("#leftDay").removeClass("dar-btn-disable")
+         }
+	     }
+	   $("#rightDay").click(function(){
+       if($(".dar-active").length>0){
+         findnextDay($(".dar-active"))
+       }else{
+         findnextDay($(".dar-today"))
+       }
+       changeClass()
+     })
+	    $("#leftDay").click(function(){
+       if($(".dar-active").length>0){
+         findPrevDay($(".dar-active"))
+       }else{
+         findPrevDay($(".dar-today"))
+       }
+       changeClass()
+     })
 	  </script>
 	  
 	</body>

@@ -109,7 +109,7 @@
           html += '<div monthId='+items[i].child[j].id+' border="0" class="dar-month"><h3>'+items[i].child[j].name+'月</h3><dl>'
           for(var k=0;k<items[i].child[j].child.length;k++){
             
-            html+='<dd dayId='+items[i].child[j].child[k].id+'    class="'+(items[i].child[j].child[k].disabled?"dar-disable":"")+'">'+items[i].child[j].child[k].name+'</dd>'
+            html+='<dd dayId="'+items[i].child[j].child[k].id+'"        class="'+(items[i].child[j].child[k].disabled?"dar-disable":"")+'">'+items[i].child[j].child[k].name+'</dd>'
           }
           html += '</dl></div>'
         }
@@ -125,14 +125,16 @@
       })
       var callback = this.options.callback
       $("#datePickerPage dd").on("click",function(){
-        $("#datePickerPage dd").removeClass('dar-active')
-        $(this).addClass("dar-active")
-        $("#datePickerPage").hide()
-        var choice = $(this).closest('.dar-year').attr('yearId')+ separator + $(this).closest('.dar-month').attr('monthId') + separator + $(this).attr("dayId")
-               
-        ele.val(choice)
-        ele.html(choice)
-        callback&&callback(choice)
+        if($(this).attr("dayId")){
+          $("#datePickerPage dd").removeClass('dar-active')
+          $(this).addClass("dar-active")
+          $("#datePickerPage").hide()
+          var choice = $(this).closest('.dar-year').attr('yearId')+ separator + $(this).closest('.dar-month').attr('monthId') + separator + $(this).attr("dayId")
+                 
+          ele.val(choice)
+          ele.html(choice)
+          callback&&callback(choice)
+        }
       })
       $("#datePickerPage .dar-disable").off()
       var now = new Date().getFullYear()
